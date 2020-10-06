@@ -1,12 +1,12 @@
-import { v5 as uuidv5 } from "uuid";
+import { v4 as uuidv5 } from "uuid";
 import { ServerWeather, ServerCity, City, Weather } from "./seedDb.types";
 
 export const dumpWeather = (weather: ServerWeather & { cityId: string }): Weather => {
   return {
-    temp: weather.main.temp,
-    feelsLike: weather.main.feels_like,
-    pressure: weather.main.pressure,
-    cityId: weather.cityId,
+    temp: weather?.main?.temp,
+    feelsLike: weather?.main?.feels_like,
+    pressure: weather?.main?.pressure,
+    cityId: weather?.cityId,
     id: uuidv5(),
   };
 };

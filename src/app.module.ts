@@ -1,7 +1,9 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { PhotoModule } from "./photo/photo.module";
-import { Photo } from "./photo/photo.entity";
+import { WeatherModule } from "./weather/weather.module";
+import { CityModule } from "./city/city.module";
+import { Weather } from "weather/weather.entity";
+import { City } from "city/city.entity";
 
 @Module({
   imports: [
@@ -12,11 +14,11 @@ import { Photo } from "./photo/photo.entity";
       username: "test",
       password: "test",
       database: "test",
-      entities: [Photo],
+      entities: [Weather, City],
       synchronize: true,
     }),
-    PhotoModule,
+    WeatherModule,
+    CityModule,
   ],
 })
 export class AppModule {}
-  

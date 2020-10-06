@@ -10,7 +10,7 @@ export class WeatherService {
     private readonly weatherRepository: Repository<Weather>,
   ) {}
 
-  async findAll(): Promise<Weather[]> {
-    return this.weatherRepository.find();
+  async find(countryId: string): Promise<Weather> {
+    return this.weatherRepository.findOne({ where: { countryId } });
   }
 }

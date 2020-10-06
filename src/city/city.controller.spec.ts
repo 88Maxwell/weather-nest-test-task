@@ -1,18 +1,25 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { CityController } from './city.controller';
+import { Test, TestingModule } from "@nestjs/testing";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { CityController } from "./city.controller";
+import { City } from "./city.entity";
+import { CityService } from "./city.service";
 
-describe('CityController', () => {
-  let controller: CityController;
+describe("CityController", () => {
+  let cityController: CityController;
+  let cityService: CityService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
+      imports: [TypeOrmModule.forRoot(), TypeOrmModule.forFeature([City])],
       controllers: [CityController],
+      providers: [CityService],
     }).compile();
 
-    controller = module.get<CityController>(CityController);
+    cityController = module.get<CityController>(CityController);
+    cityService = module.get<CityService>(CityService);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it("should be defined", () => {
+    expect(cityController).toBeDefined();
   });
 });

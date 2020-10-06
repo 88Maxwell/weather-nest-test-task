@@ -2,23 +2,11 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { WeatherModule } from "./weather/weather.module";
 import { CityModule } from "./city/city.module";
-import { Weather } from "weather/weather.entity";
-import { City } from "city/city.entity";
+import { Connection } from "typeorm";
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: "mariadb",
-      host: "localhost",
-      port: 3306,
-      username: "test",
-      password: "test",
-      database: "test",
-      entities: [Weather, City],
-      synchronize: true,
-    }),
-    WeatherModule,
-    CityModule,
-  ],
+  imports: [TypeOrmModule.forRoot(), WeatherModule, CityModule],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) {}
+}

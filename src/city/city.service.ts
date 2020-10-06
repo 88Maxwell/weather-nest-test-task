@@ -11,6 +11,6 @@ export class CityService {
   ) {}
 
   async findAll(): Promise<City[]> {
-    return this.weatherRepository.find();
+    return this.weatherRepository.find()
   }
 }
